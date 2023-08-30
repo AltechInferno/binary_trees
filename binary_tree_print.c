@@ -34,13 +34,14 @@ static size_t _height(const binary_tree_t *tree)
 static int print_t(const binary_tree_t *tree, int offset, int depth, char **s)
 {
 	if (!tree)
-		return 0;
+		return (0);
 
 	int width = snprintf(&s[depth][offset], 7, "(%03d)", tree->n);
 	int left = print_t(tree->left, offset, depth + 1, s);
 	int right = print_t(tree->right, offset + left + width, depth + 1, s);
 
-	if (depth > 0) {
+	if (depth > 0)
+	{
 		int is_left = (tree->parent && tree->parent->left == tree);
 		int i;
 
@@ -49,11 +50,10 @@ static int print_t(const binary_tree_t *tree, int offset, int depth, char **s)
 
 		for (i = start; i < end; i++)
 			s[depth - 1][i] = '-';
-		
 		s[depth - 1][start + (end - start) / 2] = '.';
 	}
 
-	return left + width + right;
+	return (left + width + right);
 }
 
 
@@ -90,6 +90,7 @@ void binary_tree_print(const binary_tree_t *tree)
 	for (size_t i = 0; i < height + 1; i++)
 	{
 		size_t j = 254;
+
 		while (j > 1 && s[i][j] == ' ')
 		{
 			s[i][j] = '\0';
